@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skylink Airways | Find Flights</title>
+    <!-- Separate external CSS for Flights page only -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+
+    <header class="navbar">
+        <a href="index.html" class="logo">
+            <img src="images/logo.jpeg" alt="Skylink Airways Logo" class="logo-image">
+            <span class="logo-text">Skylink Airways</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="manage.html">Manage</a>
+            <a href="find-flights.html">Find Flights</a>
+            <a href="about.html">About Us</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="experience.html">Experience</a>
+            <a href="feedback.html">Feedback</a>
+        </nav>
+
+        <div class="nav-right">
+            <form class="search-form" action="search.html" method="get">
+                <input type="text" name="query" placeholder="Search...">
+            </form>
+            <a href="login.html">Log in</a>
+        </div>
+    </header>
+
+    <!-- HERO WITH VIDEO -->
+    <section class="hero">
+        <video autoplay muted loop class="hero-video">
+            <source src="videos/video.mp4" type="video/mp4">
+        </video>
+
+        <div class="overlay"></div>
+
+        <div class="hero-content">
+            <div class="letdrop" id="letdropEl"></div>
+            <button class="cta" style="opacity:0; animation: fadeIn 0.5s 1.8s forwards;">Book Now</button>
+        </div>
+    </section>
+
+    <!-- BOOKING SECTION -->
+    <div class="section">
+        <div class="section">
+
+            <!-- Tab buttons -->
+            <div class="flex-row" id="tab-row">
+                <div class="box active-tab" onclick="setTab(this,'search')">Search Flights</div>
+                <div class="box" onclick="setTab(this,'manage')">Manage Booking</div>
+                <div class="box" onclick="setTab(this,'status')">Flight Status</div>
+            </div>
+
+            <!-- Search Flights panel -->
+            <div id="panel-search">
+                <div class="flex-row" style="align-items:center; margin-top:10px;">
+
+                    <div class="airport-wrapper">
+                        <input class="airport-input" id="dep-input" placeholder="Departure Airport" autocomplete="off"
+                            oninput="filterDropdown('dep')" onfocus="openDropdown('dep')" onblur="closeDropdown('dep')">
+                        <div class="dropdown" id="dep-dropdown"></div>
+                    </div>
+
+                    <div class="swap-btn" title="Swap airports" onclick="swapAirports()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c4935a" stroke-width="1.8"
+                            stroke-linecap="round">
+                            <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4" />
+                        </svg>
+                    </div>
+
+                    <div class="airport-wrapper">
+                        <input class="airport-input" id="arr-input" placeholder="Arrival Airport" autocomplete="off"
+                            oninput="filterDropdown('arr')" onfocus="openDropdown('arr')" onblur="closeDropdown('arr')">
+                        <div class="dropdown" id="arr-dropdown"></div>
+                    </div>
+
+                    <div class="box continue" onclick="goToFlights()">Continue</div>
+                </div>
+            </div>
+
+            <!-- Manage Booking panel -->
+            <div id="panel-manage" style="display:none; padding: 1rem 0;">
+                <div class="flex-row" style="margin-top:10px; gap:10px;">
+                    <input class="airport-input" style="border-right:0.5px solid rgba(44,36,26,0.15); min-width:200px;"
+                        placeholder="Booking Reference" />
+                    <input class="airport-input" style="border-right:0.5px solid rgba(44,36,26,0.15); min-width:200px;"
+                        placeholder="Last Name" />
+                    <div class="box continue" style="border-right:0.5px solid rgba(44,36,26,0.15);">Find Booking</div>
+                </div>
+            </div>
+
+            <!-- Flight Status panel -->
+            <div id="panel-status" style="display:none; padding: 1rem 0;">
+                <div class="flex-row" style="margin-top:10px; gap:10px;">
+                    <input class="airport-input" style="border-right:0.5px solid rgba(44,36,26,0.15); min-width:220px;"
+                        placeholder="Flight Number e.g. SK 204" />
+                    <input class="airport-input" type="date"
+                        style="border-right:0.5px solid rgba(44,36,26,0.15); min-width:180px; color:#2c241a;" />
+                    <div class="box continue" style="border-right:0.5px solid rgba(44,36,26,0.15);">Check Status</div>
+                </div>
+            </div>
+
+        </div>
+        <!-- DESTINATIONS -->
+        <div class="section">
+            <h3 class="center">Featured Destinations</h3>
+
+            <div class="grid">
+                <div class="card dubai">
+                    <div class="hover-content">
+                        <div class="overlay-btn">Flights to Dubai</div>
+                    </div>
+                    <span>Dubai</span>
+                </div>
+
+                <div class="card durban">
+                    <div class="hover-content">
+                        <div class="overlay-btn">Flights to Durban</div>
+                    </div>
+                    <span>Durban</span>
+                </div>
+
+                <div class="card los-angeles">
+                    <div class="hover-content">
+                        <div class="overlay-btn">Flights to Los Angeles</div>
+                    </div>
+                    <span>Los Angeles</span>
+                </div>
+
+                <div class="card chicago">
+                    <div class="hover-content">
+                        <div class="overlay-btn">Flights to Chicago</div>
+                    </div>
+                    <span>Chicago</span>
+                </div>
+
+                <div class="card dublin">
+                    <div class="hover-content">
+                        <div class="overlay-btn">Flights to Dublin</div>
+                    </div>
+                    <span>Dublin</span>
+                </div>
+
+                <div class="card johannesburg">
+                    <div class="hover-content">
+                        <div class="overlay-btn">Flights to Johannesburg</div>
+                    </div>
+                    <span>Johannesburg</span>
+                </div>
+            </div>
+
+            <!-- EXPERIENCE -->
+            <div class="section">
+                <h3 class="center">Experience</h3>
+                <div class="experience-grid">
+
+                    <div class="exp-card">
+                        <p class="card-subtitle">CABIN FEATURES</p>
+                        <h2>First Class</h2>
+                        <a href="learn more" class="overlay-btn">Learn More</a>
+                        <img src="images/firstclass.jpg" alt="First Class">
+                    </div>
+                    <div class="exp-card">
+                        <p class="card-subtitle">CABIN FEATURES</p>
+                        <h2>Business Class</h2>
+                        <a href="learn more" class="overlay-btn">Learn More</a>
+                        <img src="images/businessclass.jpg" alt="Business Class">
+                    </div>
+
+                    <div class="exp-card">
+                        <p class="card-subtitle">CABIN FEATURES</p>
+                        <h2>Premium Economy</h2>
+                        <a href="learn more" class="overlay-btn">Learn More</a>
+                        <img src="images/premiumeconomy.jpg" alt="Premium Economy">
+                    </div>
+
+                    <div class="exp-card">
+                        <p class="card-subtitle">CABIN FEATURES</p>
+                        <h2>Economy Class</h2>
+                        <a href="learn more" class="overlay-btn">Learn More</a>
+                        <img src="images/economyclass.jpg" alt="Economy Class">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+            const airports = [
+                { code: 'JNB', name: 'OR Tambo', city: 'Johannesburg' },
+                { code: 'CPT', name: 'Cape Town Intl', city: 'Cape Town' },
+                { code: 'DUR', name: 'King Shaka Intl', city: 'Durban' },
+                { code: 'DXB', name: 'Dubai Intl', city: 'Dubai' },
+                { code: 'LHR', name: 'Heathrow', city: 'London' },
+                { code: 'LAX', name: 'Los Angeles Intl', city: 'Los Angeles' },
+                { code: 'ORD', name: "O'Hare Intl", city: 'Chicago' },
+                { code: 'DUB', name: 'Dublin Intl', city: 'Dublin' },
+                { code: 'CDG', name: 'Charles de Gaulle', city: 'Paris' },
+                { code: 'JFK', name: 'John F. Kennedy', city: 'New York' },
+                { code: 'SIN', name: 'Changi Airport', city: 'Singapore' },
+                { code: 'SYD', name: 'Kingsford Smith', city: 'Sydney' },
+            ];
+
+            function renderDropdown(id, list) {
+                const dd = document.getElementById(id + '-dropdown');
+                dd.innerHTML = list.map(a => `
+        <div class="dropdown-item" onmousedown="selectAirport('${id}','${a.code}','${a.city}')">
+            <span class="code">${a.code}</span>
+            <span class="city">${a.city} — ${a.name}</span>
+        </div>`).join('');
+            }
+
+            function filterDropdown(id) {
+                const val = document.getElementById(id + '-input').value.toLowerCase();
+                const filtered = airports.filter(a =>
+                    a.code.toLowerCase().includes(val) ||
+                    a.city.toLowerCase().includes(val) ||
+                    a.name.toLowerCase().includes(val)
+                );
+                renderDropdown(id, filtered);
+                openDropdown(id);
+            }
+
+            function openDropdown(id) {
+                const val = document.getElementById(id + '-input').value.toLowerCase();
+                const list = val
+                    ? airports.filter(a => a.code.toLowerCase().includes(val) || a.city.toLowerCase().includes(val))
+                    : airports;
+                renderDropdown(id, list);
+                document.getElementById(id + '-dropdown').classList.add('open');
+            }
+
+            function closeDropdown(id) {
+                setTimeout(() => {
+                    document.getElementById(id + '-dropdown').classList.remove('open');
+                }, 150);
+            }
+
+            function selectAirport(id, code, city) {
+                document.getElementById(id + '-input').value = code + ' — ' + city;
+                document.getElementById(id + '-dropdown').classList.remove('open');
+            }
+
+            function swapAirports() {
+                const dep = document.getElementById('dep-input');
+                const arr = document.getElementById('arr-input');
+                const tmp = dep.value;
+                dep.value = arr.value;
+                arr.value = tmp;
+            }
+
+            function setTab(el, panel) {
+                document.querySelectorAll('#tab-row .box').forEach(b => b.classList.remove('active-tab'));
+                el.classList.add('active-tab');
+                ['search', 'manage', 'status'].forEach(p => {
+                    document.getElementById('panel-' + p).style.display = p === panel ? 'block' : 'none';
+                });
+            }
+
+            function goToFlights() {
+                const dep = document.getElementById('dep-input').value;
+                const arr = document.getElementById('arr-input').value;
+                if (!dep || !arr) { alert('Please select both airports.'); return; }
+                window.location.href = 'find-flights.html?dep=' + encodeURIComponent(dep) + '&arr=' + encodeURIComponent(arr);
+            }
+
+            const words = ["Comfort", " Above", " The", " Clouds"];
+            const colors = [null, null, null, "#c4935a"];
+            const el = document.getElementById('letdropEl');
+            let delay = 0;
+
+            words.forEach((word, wi) => {
+                [...word].forEach((ch) => {
+                    const span = document.createElement('span');
+                    span.textContent = ch === ' ' ? '\u00a0' : ch;
+                    if (colors[wi]) span.style.color = colors[wi];
+                    span.style.animationDelay = delay + 's';
+                    delay += ch === ' ' ? 0.01 : 0.055;
+                    el.appendChild(span);
+                });
+                if (wi === 1) {
+                    el.appendChild(document.createElement('br'));
+                }
+            });
+        </script>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>About</h3>
+                    <a href="#">About Us</a>
+                    <a href="#">Business Rewards</a>
+                    <a href="#">Travel Partners</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Travel Info</h3>
+                    <a href="#">Before You Fly</a>
+                    <a href="#">Destinations</a>
+                    <a href="#">Discover Dubai</a>
+                    <a href="#">Dubai Experience</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <a href="#">Book</a>
+                    <a href="#">Manage</a>
+                    <a href="#">Special Offers</a>
+                    <a href="#">Family Travel</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <a href="#">Help</a>
+                    <a href="#">Experience</a>
+                    <a href="#">Skywards</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © Skylink Airways | All Rights Reserved.
+                <a href="#" onclick="alert('Legal information coming soon.')">Legal</a>
+                <a href="#" onclick="alert('Privacy policy coming soon.')">Privacy Policy</a>
+            </div>
+        </footer>
+</body>
+
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skylink Airways | Find Flights</title>
+    <!-- Separate external CSS for Flights page only -->
+    <link rel="stylesheet" href="flights.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR (same structure but styled within manage-style.css to match homepage look) -->
+    <header class="navbar">
+        <a href="index.html" class="logo">
+            <img src="images/logo.jpeg" alt="Skylink Airways Logo" class="logo-image">
+            <span class="logo-text">Skylink Airways</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="manage.html">Manage</a>
+            <a href="find-flights.html">Find Flights</a>
+            <a href="about.html">About Us</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="experience.html">Experience</a>
+            <a href="feedback.html">Feedback</a>
+        </nav>
+
+        <div class="nav-right">
+            <form class="search-form" action="search.html" method="get">
+                <input type="text" name="query" placeholder="Search...">
+            </form>
+            <a href="login.html">Log in</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION FOR FLIGHTS PAGE -->
+    <section class="flights-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="wipe-wrapper">
+                <div class="wipe-line" id="line1">Catch Flights, Not Feelings.</div>
+            </div>
+            <div class="wipe-wrapper">
+                <div class="wipe-line" id="line2">Why Chase Anything Less Than The World?</div>
+            </div>
+            <p class="flights-sub" id="flightsSub">Premium skies. Real prices. Yours now.</p>
+            <button class="hero-book-btn" id="heroBtn" onclick="window.location.href='destinations.html'">Explore
+                Flights</button>
+        </div>
+    </section>
+
+    <!-- MAIN FLIGHT SEARCH FORM -->
+    <div class="flight-search-container">
+        <div class="search-form-wrapper">
+            <h2>Search Flights</h2>
+            <p class="form-tagline">Where would you like to go?</p>
+
+            <!-- Trip Type Tabs -->
+            <div class="trip-tabs">
+                <button class="tab-btn active" data-trip="return">Return</button>
+                <button class="tab-btn" data-trip="oneway">One Way</button>
+                <button class="tab-btn" data-trip="multi">Multi City</button>
+            </div>
+
+            <form id="flightSearchForm">
+                <!-- Return Trip Fields (default visible) -->
+                <div id="returnFields" class="trip-fields active-fields">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Departure Airport</label>
+                            <input type="text" placeholder="City or Airport">
+                        </div>
+                        <div class="form-group">
+                            <label>Arrival Airport</label>
+                            <input type="text" placeholder="City or Airport">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Departure Date</label>
+                            <input type="date">
+                        </div>
+                        <div class="form-group">
+                            <label>Return Date</label>
+                            <input type="date">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- One Way Fields (hidden initially) -->
+                <div id="onewayFields" class="trip-fields">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Departure Airport</label>
+                            <input type="text" placeholder="City or Airport">
+                        </div>
+                        <div class="form-group">
+                            <label>Arrival Airport</label>
+                            <input type="text" placeholder="City or Airport">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Departure Date</label>
+                            <input type="date">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Multi City Fields (hidden initially) -->
+                <div id="multiFields" class="trip-fields">
+                    <div class="multi-city-row">
+                        <div class="form-group">
+                            <label>From</label>
+                            <input type="text" placeholder="City or Airport">
+                        </div>
+                        <div class="form-group">
+                            <label>To</label>
+                            <input type="text" placeholder="City or Airport">
+                        </div>
+                        <div class="form-group">
+                            <label>Departure Date</label>
+                            <input type="date">
+                        </div>
+                    </div>
+                    <button type="button" class="add-city-btn">+ Add another flight</button>
+                </div>
+
+                <!-- Passenger & Class Row -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Passengers</label>
+                        <select>
+                            <option>1 Passenger</option>
+                            <option>2 Passengers</option>
+                            <option>3 Passengers</option>
+                            <option>4 Passengers</option>
+                            <option>5 Passengers</option>
+                            <option>6+ Passengers</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Class</label>
+                        <select>
+                            <option>Economy Class</option>
+                            <option>Premium Economy</option>
+                            <option>Business Class</option>
+                            <option>First Class</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Promo Code -->
+                <div class="promo-section">
+                    <input type="text" placeholder="Add Promo code" class="promo-input">
+                    <button type="button" class="apply-promo">Apply</button>
+                </div>
+
+                <button type="submit" class="search-flights-btn">Search Flights </button>
+                <div id="flightFeedback"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- SPECIAL OFFERS SECTION -->
+    <div class="special-offers">
+        <h3> Special Offers </h3>
+        <div class="offers-grid">
+            <div class="offer-card">
+                <div class="offer-image">
+                    <img src="images/maldives.jpg" alt="Maldives">
+                </div>
+                <div class="offer-info">
+                    <h4>Maldives</h4>
+                    <p>Starting from $499</p>
+                    <span class="offer-badge">-30%</span>
+                </div>
+            </div>
+
+            <div class="offer-card">
+                <div class="offer-image">
+                    <img src="images/newyork.jpg" alt="New York">
+                </div>
+                <div class="offer-info">
+                    <h4>New York</h4>
+                    <p>Starting from $599</p>
+                    <span class="offer-badge">-25%</span>
+                </div>
+            </div>
+
+            <div class="offer-card">
+                <div class="offer-image">
+                    <img src="images/paris.jpg" alt="Paris">
+                </div>
+                <div class="offer-info">
+                    <h4>Paris</h4>
+                    <p>Starting from $449</p>
+                    <span class="offer-badge">-35%</span>
+                </div>
+            </div>
+
+            <div class="offer-card">
+                <div class="offer-image">
+                    <img src="images/tokyo.jpg" alt="Tokyo">
+                </div>
+                <div class="offer-info">
+                    <h4>Tokyo</h4>
+                    <p>Starting from $699</p>
+                    <span class="offer-badge">-20%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- HELP AND SUPPORT -->
+        <div class="help-support">
+            <h3>Help & Support</h3>
+            <div class="help-links">
+                <a href="#">FAQ</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>About</h3>
+                    <a href="#">About Us</a>
+                    <a href="#">Business Rewards</a>
+                    <a href="#">Travel Partners</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Travel Info</h3>
+                    <a href="#">Before You Fly</a>
+                    <a href="#">Destinations</a>
+                    <a href="#">Discover Dubai</a>
+                    <a href="#">Dubai Experience</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <a href="#">Book</a>
+                    <a href="#">Manage</a>
+                    <a href="#">Special Offers</a>
+                    <a href="#">Family Travel</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <a href="#">Help</a>
+                    <a href="#">Experience</a>
+                    <a href="#">Skywards</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © Skylink Airways | All Rights Reserved.
+                <a href="#" onclick="alert('Legal information coming soon.')">Legal</a>
+                <a href="#" onclick="alert('Privacy policy coming soon.')">Privacy Policy</a>
+                <a href="#" onclick="alert('Partners information coming soon.')">Partners</a>
+                <a href="#" onclick="alert('Quick links coming soon.')">Quick Links</a>
+            </div>
+        </footer>
+        <script>
+            // Trip type tabs
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const returnFields = document.getElementById('returnFields');
+            const onewayFields = document.getElementById('onewayFields');
+            const multiFields = document.getElementById('multiFields');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    returnFields.classList.remove('active-fields');
+                    onewayFields.classList.remove('active-fields');
+                    multiFields.classList.remove('active-fields');
+                    const tripType = this.getAttribute('data-trip');
+                    if (tripType === 'return') returnFields.classList.add('active-fields');
+                    else if (tripType === 'oneway') onewayFields.classList.add('active-fields');
+                    else if (tripType === 'multi') multiFields.classList.add('active-fields');
+                });
+            });
+
+            // Add city
+            const addCityBtn = document.querySelector('.add-city-btn');
+            if (addCityBtn) {
+                addCityBtn.addEventListener('click', function () {
+                    const multiContainer = document.getElementById('multiFields');
+                    const newRow = document.createElement('div');
+                    newRow.className = 'multi-city-row';
+                    newRow.innerHTML = `
+                <div class="form-group"><label>From</label><input type="text" placeholder="City or Airport"></div>
+                <div class="form-group"><label>To</label><input type="text" placeholder="City or Airport"></div>
+                <div class="form-group"><label>Departure Date</label><input type="date"></div>
+                <button type="button" class="remove-city-btn">✕</button>
+            `;
+                    multiContainer.insertBefore(newRow, this);
+                    newRow.querySelector('.remove-city-btn').addEventListener('click', () => newRow.remove());
+                });
+            }
+
+            // Form submit
+            document.getElementById('flightSearchForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const activeTab = document.querySelector('.tab-btn.active').getAttribute('data-trip');
+                let from = '', to = '', depDate = '', retDate = '';
+
+                if (activeTab === 'return') {
+                    const inputs = document.querySelectorAll('#returnFields input[type="text"]');
+                    const dates = document.querySelectorAll('#returnFields input[type="date"]');
+                    from = inputs[0].value || 'Any';
+                    to = inputs[1].value || 'Any';
+                    depDate = dates[0].value;
+                    retDate = dates[1].value;
+                } else if (activeTab === 'oneway') {
+                    const inputs = document.querySelectorAll('#onewayFields input[type="text"]');
+                    const dates = document.querySelectorAll('#onewayFields input[type="date"]');
+                    from = inputs[0].value || 'Any';
+                    to = inputs[1].value || 'Any';
+                    depDate = dates[0].value;
+                } else {
+                    const inputs = document.querySelectorAll('#multiFields input[type="text"]');
+                    from = inputs[0]?.value || 'Any';
+                    to = inputs[1]?.value || 'Any';
+                }
+
+                const selects = document.querySelectorAll('.form-row select');
+                const passengers = selects[0].value;
+                const flightClass = selects[1].value;
+
+                const feedbackDiv = document.getElementById('flightFeedback');
+                feedbackDiv.innerHTML = 'Searching for the best flights...';
+                feedbackDiv.style.color = '#c4935a';
+
+                setTimeout(() => {
+                    feedbackDiv.innerHTML = '';
+                    showResults(from, to, depDate, retDate, passengers, flightClass, activeTab);
+                }, 1000);
+            });
+
+            function showResults(from, to, depDate, retDate, passengers, flightClass, tripType) {
+                const flights = [
+                    { code: 'SK 204', departs: '06:00', arrives: '14:30', duration: '8h 30m', stops: 'Non-stop', price: 499, tag: 'Best Value' },
+                    { code: 'SK 318', departs: '09:15', arrives: '19:45', duration: '10h 30m', stops: '1 Stop', price: 389, tag: 'Cheapest' },
+                    { code: 'SK 076', departs: '13:00', arrives: '21:00', duration: '8h 00m', stops: 'Non-stop', price: 549, tag: 'Fastest' },
+                    { code: 'SK 512', departs: '17:45', arrives: '06:15+1', duration: '12h 30m', stops: '2 Stops', price: 299, tag: '' },
+                    { code: 'SK 890', departs: '22:30', arrives: '07:00+1', duration: '8h 30m', stops: 'Non-stop', price: 529, tag: 'Late Night Deal' },
+                ];
+
+                const formattedDep = depDate ? new Date(depDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : 'TBD';
+                const formattedRet = retDate ? new Date(retDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
+
+                // Remove old overlay if exists
+                const old = document.getElementById('resultsOverlay');
+                if (old) old.remove();
+
+                const style = document.createElement('style');
+                style.textContent = `
+            @keyframes slideUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
+            .fl-card { background:#fff; border:1px solid rgba(196,147,90,0.2); border-radius:12px; padding:20px 24px; margin:0 24px 16px; display:flex; align-items:center; justify-content:space-between; gap:16px; transition:box-shadow 0.2s, transform 0.2s; }
+            .fl-card:hover { box-shadow:0 8px 28px rgba(196,147,90,0.2); transform:translateY(-2px); }
+            .fl-tag { display:inline-block; padding:3px 12px; border-radius:30px; font-size:10px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; background:#2c241a; color:#c4935a; margin-bottom:6px; }
+            .fl-code { font-size:12px; color:rgba(44,36,26,0.45); letter-spacing:0.1em; }
+            .fl-times { font-size:22px; font-weight:800; color:#2c241a; letter-spacing:1px; }
+            .fl-duration { font-size:11px; color:rgba(44,36,26,0.4); text-align:center; letter-spacing:0.1em; }
+            .fl-duration-line { width:80px; height:1px; background:rgba(196,147,90,0.4); margin:6px auto 4px; position:relative; }
+            .fl-duration-line::after { content:'✈'; position:absolute; top:-8px; left:50%; transform:translateX(-50%); font-size:13px; color:#c4935a; }
+            .fl-stops { font-size:11px; color:rgba(44,36,26,0.5); text-align:center; margin-top:2px; }
+            .fl-price { font-size:26px; font-weight:800; color:#c4935a; }
+            .fl-price-sub { font-size:11px; color:rgba(44,36,26,0.4); }
+            .fl-select-btn { margin-top:8px; padding:9px 22px; background:#2c241a; color:#c4935a; border:none; border-radius:30px; font-size:11px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; cursor:pointer; transition:0.2s; display:block; width:100%; }
+            .fl-select-btn:hover { background:#c4935a; color:#2c241a; }
+            .fl-filter-btn { padding:8px 20px; border-radius:30px; border:1px solid rgba(196,147,90,0.35); background:transparent; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; cursor:pointer; color:rgba(44,36,26,0.5); transition:0.2s; }
+            .fl-filter-btn.on { background:#2c241a; color:#c4935a; border-color:#2c241a; }
+            .fl-filter-btn:hover { border-color:#c4935a; color:#c4935a; }
+        `;
+                document.head.appendChild(style);
+
+                const overlay = document.createElement('div');
+                overlay.id = 'resultsOverlay';
+                overlay.style.cssText = 'position:fixed; inset:0; background:rgba(44,36,26,0.75); z-index:9999; display:flex; align-items:flex-start; justify-content:center; overflow-y:auto; padding:30px 20px;';
+
+                const panel = document.createElement('div');
+                panel.style.cssText = 'background:#faf7f2; border-radius:16px; width:100%; max-width:820px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,0.4); animation:slideUp 0.4s cubic-bezier(.22,1,.36,1);';
+
+                panel.innerHTML = `
+            <div style="background:#2c241a; padding:24px 28px; display:flex; align-items:center; justify-content:space-between;">
+                <div>
+                    <div style="font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:rgba(196,147,90,0.6); margin-bottom:4px;">Flight Results</div>
+                    <div style="font-size:20px; font-weight:800; color:#f5e6d3; letter-spacing:1px;">${from.toUpperCase()} &nbsp;✈&nbsp; ${to.toUpperCase()}</div>
+                    <div style="font-size:12px; color:rgba(240,224,206,0.45); margin-top:4px;">${formattedDep}${formattedRet ? ' → ' + formattedRet : ''} · ${passengers} · ${flightClass}</div>
+                </div>
+                <button onclick="document.getElementById('resultsOverlay').remove()"
+                    style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); color:#f5e6d3; width:36px; height:36px; border-radius:50%; font-size:18px; cursor:pointer; flex-shrink:0;">✕</button>
+            </div>
+            <div style="padding:18px 24px; border-bottom:1px solid rgba(196,147,90,0.12); display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+                <span style="font-size:11px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(44,36,26,0.35);">Filter:</span>
+                <button class="fl-filter-btn on" onclick="filterFlights('all', this)">All</button>
+                <button class="fl-filter-btn" onclick="filterFlights('nonstop', this)">Non-stop</button>
+                <button class="fl-filter-btn" onclick="filterFlights('cheapest', this)">Cheapest</button>
+                <button class="fl-filter-btn" onclick="filterFlights('fastest', this)">Fastest</button>
+            </div>
+            <div style="padding:16px 28px 8px; font-size:12px; color:rgba(44,36,26,0.4); letter-spacing:0.1em;">
+                Showing <strong style="color:#2c241a;">${flights.length} flights</strong> available
+            </div>
+            <div id="flightsList">
+                ${flights.map(f => `
+                    <div class="fl-card" data-stops="${f.stops}" data-price="${f.price}" data-duration="${f.duration}">
+                        <div style="min-width:130px;">
+                            ${f.tag ? `<div class="fl-tag">${f.tag}</div>` : '<div style="height:22px;"></div>'}
+                            <div class="fl-code">${f.code}</div>
+                            <div class="fl-times">${f.departs} → ${f.arrives}</div>
+                        </div>
+                        <div style="text-align:center; flex:1;">
+                            <div class="fl-duration-line"></div>
+                            <div class="fl-duration">${f.duration}</div>
+                            <div class="fl-stops">${f.stops}</div>
+                        </div>
+                        <div style="text-align:right; min-width:110px;">
+                            <div class="fl-price">$${f.price}</div>
+                            <div class="fl-price-sub">per person</div>
+                            <button class="fl-select-btn" onclick="selectFlight('${f.code}','${f.departs}','${f.arrives}',${f.price},'${from}','${to}')">Select</button>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+            <div style="height:24px;"></div>
+        `;
+
+                overlay.appendChild(panel);
+                document.body.appendChild(overlay);
+                overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+            }
+
+            window.filterFlights = function (type, btn) {
+                document.querySelectorAll('.fl-filter-btn').forEach(b => b.classList.remove('on'));
+                btn.classList.add('on');
+                const cards = document.querySelectorAll('.fl-card');
+                const allPrices = [...cards].map(c => parseInt(c.dataset.price));
+                const allDurations = [...cards].map(c => c.dataset.duration);
+                const toMins = d => { const parts = d.replace('m', '').split('h'); return parseInt(parts[0]) * 60 + parseInt(parts[1]); };
+                const minPrice = Math.min(...allPrices);
+                const minDur = allDurations.reduce((a, b) => toMins(a) <= toMins(b) ? a : b);
+
+                cards.forEach(card => {
+                    if (type === 'all') { card.style.display = 'flex'; return; }
+                    if (type === 'nonstop') { card.style.display = card.dataset.stops === 'Non-stop' ? 'flex' : 'none'; return; }
+                    if (type === 'cheapest') { card.style.display = parseInt(card.dataset.price) === minPrice ? 'flex' : 'none'; return; }
+                    if (type === 'fastest') { card.style.display = card.dataset.duration === minDur ? 'flex' : 'none'; }
+                });
+            }
+
+            window.selectFlight = function (code, dep, arr, price, from, to) {
+                const existing = document.getElementById('confirmModal');
+                if (existing) existing.remove();
+
+                const modal = document.createElement('div');
+                modal.id = 'confirmModal';
+                modal.style.cssText = 'position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:10000; display:flex; align-items:center; justify-content:center;';
+                modal.innerHTML = `
+            <div style="background:#faf7f2; border-radius:16px; padding:40px; max-width:400px; width:90%; text-align:center; border-top:3px solid #c4935a; animation:slideUp 0.3s cubic-bezier(.22,1,.36,1);">
+                <div style="font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:#c4935a; margin-bottom:8px;">Flight Selected</div>
+                <h3 style="font-size:22px; font-weight:800; color:#2c241a; margin-bottom:6px;">${from.toUpperCase()} → ${to.toUpperCase()}</h3>
+                <p style="font-size:13px; color:rgba(44,36,26,0.5); margin-bottom:20px;">${code} · ${dep} – ${arr}</p>
+                <div style="background:#2c241a; border-radius:10px; padding:16px; margin-bottom:24px;">
+                    <div style="font-size:11px; color:rgba(196,147,90,0.6); letter-spacing:0.2em; text-transform:uppercase;">Total Price</div>
+                    <div style="font-size:32px; font-weight:800; color:#c4935a;">$${price}</div>
+                    <div style="font-size:11px; color:rgba(240,224,206,0.35);">per person · taxes included</div>
+                </div>
+                <button onclick="
+                    document.getElementById('confirmModal').remove();
+                    document.getElementById('resultsOverlay').remove();
+                    const toast = document.createElement('div');
+                    toast.textContent = ' Booking Confirmed!';
+                    toast.style.cssText = 'position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#2c241a; color:#c4935a; padding:14px 36px; border-radius:30px; font-size:13px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; z-index:99999; box-shadow:0 8px 24px rgba(0,0,0,0.3);';
+                    document.body.appendChild(toast);
+                    setTimeout(() => toast.remove(), 3500);"
+                    style="width:100%; padding:13px; background:#c4935a; color:#2c241a; border:none; border-radius:30px; font-weight:700; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; cursor:pointer; margin-bottom:10px;">
+                     Confirm Booking
+             </button>
+                <button onclick="document.getElementById('confirmModal').remove()"
+                    style="width:100%; padding:11px; background:transparent; color:rgba(44,36,26,0.4); border:1px solid rgba(44,36,26,0.15); border-radius:30px; font-size:12px; cursor:pointer;">
+                    Go Back
+                </button>
+            </div>
+        `;
+                document.body.appendChild(modal);
+                modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
+            }
+        </script>
+
+</body>
+
+</html>
