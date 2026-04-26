@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skylink Airways | Contact Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <link rel="stylesheet" href="contact.css">
+</head>
+
+<body>
+
+    <header class="navbar navbar-expand-lg"
+        style="background:#2c241a; height:75px; padding:0 40px; position:fixed; top:0; width:100%; z-index:1000;">
+        <a href="index.html" class="navbar-brand logo">
+            <img src="images/logo.jpeg" class="logo-image" alt="Skylink Logo">
+            <span class="logo-text">Skylink Airways</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <nav class="navbar-nav mx-auto gap-2">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="manage.html" class="nav-link">Manage</a>
+                <a href="find-flights.html" class="nav-link">Find Flights</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="destinations.html" class="nav-link">Destinations</a>
+                <a href="contact.html" class="nav-link active">Contact Us</a>
+                <a href="experience.html" class="nav-link">Experience</a>
+                <a href="feedback.html" class="nav-link">Feedback</a>
+            </nav>
+            <div class="d-flex align-items-center gap-3">
+                <form class="search-form" action="search.html" method="get">
+                    <input type="text" name="query" placeholder="Search..." class="form-control form-control-sm">
+                </form>
+                <a href="login.html" class="nav-link">Log in</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- FULL PAGE LAYOUT -->
+    <div class="contact-page">
+
+        <!-- LEFT PANEL -->
+        <div class="contact-left">
+            <div class="left-inner">
+                <p class="left-eyebrow">Contact Us</p>
+                <h1 class="left-title">No question too big. No request too small</h1>
+                <p class="left-body">Have a question about your booking, need help with your journey, or just want to
+                    reach out? Our team is ready for you.</p>
+
+                <div class="left-divider"></div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c4935a" stroke-width="2"
+                            stroke-linecap="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="ci-label">Email</p>
+                        <p class="ci-value">support@skylinkairways.com</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c4935a" stroke-width="2"
+                            stroke-linecap="round">
+                            <path
+                                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="ci-label">Phone</p>
+                        <p class="ci-value">+1 800 759 5465</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c4935a" stroke-width="2"
+                            stroke-linecap="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="ci-label">Support Hours</p>
+                        <p class="ci-value">24 / 7 — Always On</p>
+                    </div>
+                </div>
+
+                <div class="left-divider"></div>
+
+                <div class="hours-block">
+                    <p class="ci-label" style="margin-bottom:12px;">Office Hours</p>
+                    <div class="hours-row"><span>Mon — Fri</span><span>08:00 — 23:00</span></div>
+                    <div class="hours-row"><span>Sat — Sun</span><span>09:00 — 20:00</span></div>
+                    <div class="hours-row"><span>Emergency</span><span>24 / 7</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="contact-right">
+            <div class="right-inner">
+                <p class="right-eyebrow">Send A Message</p>
+                <h2 class="right-title">Drop us a<br>message <span>we never leave you on read</span></h2>
+
+                <form id="contactForm" onsubmit="submitForm(event)">
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-12 col-md-6">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" placeholder="John Doe" required>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" placeholder="john@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-12 col-md-6">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" placeholder="+1 234 567 8900">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label">Subject</label>
+                            <select class="form-select" required>
+                                <option value="" disabled selected>Select a subject</option>
+                                <option>Booking Enquiry</option>
+                                <option>Flight Status</option>
+                                <option>Baggage</option>
+                                <option>Refund Request</option>
+                                <option>Special Assistance</option>
+                                <option>General Enquiry</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Your Message</label>
+                        <textarea class="form-control" placeholder="Write your message here..." rows="8"
+                            required></textarea>
+                    </div>
+
+                    <button type="submit" class="send-btn">
+                        Send Message &nbsp;→
+                    </button>
+                    <div id="formFeedback"></div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>About</h3>
+                <a href="about.html">About Us</a>
+            </div>
+            <div class="footer-column">
+                <h3>Travel Info</h3>
+                <a href="experience.html">Before You Fly</a>
+                <a href="destinations.html">Destinations</a>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <a href="find-flights.html">Book</a>
+                <a href="manage.html">Manage</a>
+                <a href="find-flights.html#special-offers">Special Offers</a>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <a href="contact.html">Help</a>
+                <a href="experience.html">Experience</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © Skylink Airways | All Rights Reserved.
+            <a href="#" onclick="alert('Coming soon.')">Legal</a>
+            <a href="#" onclick="alert('Coming soon.')">Privacy Policy</a>
+            <a href="#" onclick="alert('Coming soon.')">Partners</a>
+            <a href="#" onclick="alert('Coming soon.')">Quick Links</a>
+        </div>
+    </footer>
+
+    <script>
+        function submitForm(e) {
+            e.preventDefault();
+            const feedback = document.getElementById('formFeedback');
+            const btn = document.querySelector('.send-btn');
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+            setTimeout(() => {
+                feedback.textContent = '✓ Message received. We will be in touch within 24 hours.';
+                feedback.classList.add('show');
+                btn.textContent = 'Send Message →';
+                btn.disabled = false;
+                document.getElementById('contactForm').reset();
+                setTimeout(() => {
+                    feedback.classList.remove('show');
+                    feedback.textContent = '';
+                }, 5000);
+            }, 1500);
+        }
+    </script>
+
+</body>
+
+</html>

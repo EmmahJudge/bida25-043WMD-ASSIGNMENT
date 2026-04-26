@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skylink Airways | Destinations</title>
+    <link rel="stylesheet" href="destinations.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+</head>
+
+<body>
+
+
+    <header class="navbar navbar-expand-lg" style="background:#2c241a; height:75px; padding:0 40px;">
+        <a href="index.html" class="navbar-brand logo">
+            <img src="images/logo.jpeg" class="logo-image" alt="Skylink Logo">
+            <span class="logo-text">Skylink Airways</span>
+        </a>
+
+        <!-- Hamburger toggle (appears on mobile automatically) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+            <nav class="navbar-nav mx-auto gap-2">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="manage.html" class="nav-link">Manage</a>
+                <a href="find-flights.html" class="nav-link">Find Flights</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="destinations.html" class="nav-link">Destinations</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+                <a href="experience.html" class="nav-link">Experience</a>
+                <a href="feedback.html" class="nav-link">Feedback</a>
+            </nav>
+            <div class="d-flex align-items-center gap-3">
+                <form class="search-form" action="search.html" method="get">
+                    <input type="text" name="query" placeholder="Search..." class="form-control form-control-sm">
+                </form>
+                <a href="login.html" class="nav-link">Log in</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="dest-hero">
+        <video autoplay muted loop playsinline class="dest-hero-video">
+            <source src="videos/destinations.mp4" type="video/mp4">
+        </video>
+        <div class="dest-hero-overlay"></div>
+        <div class="dest-hero-content">
+            <div class="wipe-wrapper">
+                <div class="wipe-line" id="dline1">Explore The World</div>
+            </div>
+            <div class="wipe-wrapper">
+                <div class="wipe-line" id="dline2">120+ destinations. One airline.</div>
+            </div>
+            <p class="dest-sub">Where would you like to go next?</p>
+        </div>
+    </section>
+
+    <!-- SEARCH BAR -->
+    <div class="dest-search-bar">
+        <input type="text" id="destSearch" placeholder="Search a destination..." oninput="filterDestinations()">
+        <button onclick="filterDestinations()">Search</button>
+    </div>
+
+    <!-- DESTINATIONS GRID -->
+    <section class="dest-section">
+        <h2 class="dest-title">Explore All Destinations</h2>
+
+        <div class="row g-4" id="destGrid">
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card" data-region="africa">
+                <img src="images/johannesburg.jpg" alt="Johannesburg" class="w-100">
+                <div class="dest-info">
+                    <h4>Johannesburg</h4>
+                    <p>South Africa</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Africa</span>
+                        <span class="dest-price">P 2,390</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card" data-region="africa">
+                <img src="images/durban.jpg" alt="Durban" class="w-100">
+                <div class="dest-info">
+                    <h4>Durban</h4>
+                    <p>South Africa</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Africa</span>
+                        <span class="dest-price">P 9,380</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card" data-region="africa">
+                <img src="images/capetown.jpg" alt="Cape Town" class="w-100">
+                <div class="dest-info">
+                    <h4>Cape Town</h4>
+                    <p>South Africa</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Africa</span>
+                        <span class="dest-price">P 7,273</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card" data-region="middleeast">
+                <img src="images/dubai.jpg" alt="Dubai" class="w-100">
+                <div class="dest-info">
+                    <h4>Dubai</h4>
+                    <p>United Arab Emirates</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Middle East</span>
+                        <span class="dest-price">P 55,500</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card" data-region="europe">
+                <img src="images/london.jpg" alt="London" class="w-100">
+                <div class="dest-info">
+                    <h4>London</h4>
+                    <p>United Kingdom</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Europe</span>
+                        <span class="dest-price">P 25,600</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card" data-region="europe">
+                <img src="images/paris.jpg" alt="Paris" class="w-100">
+                <div class="dest-info">
+                    <h4>Paris</h4>
+                    <p>France</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Europe</span>
+                        <span class="dest-price">P30 400</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HIDDEN CARDS -->
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="europe">
+                <img src="images/dublin.jpg" alt="Dublin" class="w-100">
+                <div class="dest-info">
+                    <h4>Dublin</h4>
+                    <p>Ireland</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Europe</span>
+                        <span class="dest-price">P 15,963</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="americas">
+                <img src="images/miami.jpg" alt="Miami" class="w-100">
+                <div class="dest-info">
+                    <h4>Miami</h4>
+                    <p>United States</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Americas</span>
+                        <span class="dest-price">P 29,460</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="europe">
+                <img src="images/amsterdan.jpg" alt="Amsterdam" class="w-100">
+                <div class="dest-info">
+                    <h4>Amsterdam</h4>
+                    <p>Netherlands</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Europe</span>
+                        <span class="dest-price">P 15,690</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="americas">
+                <img src="images/newyork.jpg" alt="New York" class="w-100">
+                <div class="dest-info">
+                    <h4>New York</h4>
+                    <p>United States</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Americas</span>
+                        <span class="dest-price">P 55,896</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="americas">
+                <img src="images/losangeles.jpg" alt="Los Angeles" class="w-100">
+                <div class="dest-info">
+                    <h4>Los Angeles</h4>
+                    <p>United States</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Americas</span>
+                        <span class="dest-price">P 58,334</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="americas">
+                <img src="images/chicago.jpg" alt="Chicago" class="w-100">
+                <div class="dest-info">
+                    <h4>Chicago</h4>
+                    <p>United States</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Americas</span>
+                        <span class="dest-price">P 76,000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="americas">
+                <img src="images/toronto.jpg" alt="Toronto" class="w-100">
+                <div class="dest-info">
+                    <h4>Toronto</h4>
+                    <p>Canada</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Americas</span>
+                        <span class="dest-price">P 96,447</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="oceania">
+                <img src="images/melbourne.jpg" alt="Melbourne" class="w-100">
+                <div class="dest-info">
+                    <h4>Melbourne</h4>
+                    <p>Australia</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Oceania</span>
+                        <span class="dest-price">P 30,000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="asia">
+                <img src="images/tokyo.jpg" alt="Tokyo" class="w-100">
+                <div class="dest-info">
+                    <h4>Tokyo</h4>
+                    <p>Japan</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Asia</span>
+                        <span class="dest-price">P 58,334</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="europe">
+                <img src="images/madrid.jpg" alt="Madrid" class="w-100">
+                <div class="dest-info">
+                    <h4>Madrid</h4>
+                    <p>Spain</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Europe</span>
+                        <span class="dest-price">P 30,000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="asia">
+                <img src="images/bangkok.jpg" alt="Bangkok" class="w-100">
+                <div class="dest-info">
+                    <h4>Bangkok</h4>
+                    <p>Thailand</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Asia</span>
+                        <span class="dest-price">P 15,963</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="africa">
+                <img src="images/lagos.jpg" alt="Lagos" class="w-100">
+                <div class="dest-info">
+                    <h4>Lagos</h4>
+                    <p>Nigeria</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Africa</span>
+                        <span class="dest-price">P 16,043</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="asia">
+                <img src="images/kolkata.jpg" alt="Kolkata" class="w-100">
+                <div class="dest-info">
+                    <h4>Kolkata</h4>
+                    <p>India</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Asia</span>
+                        <span class="dest-price">P 29,460</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="middleeast">
+                <img src="images/islamabad.jpg" alt="Islamabad" class="w-100">
+                <div class="dest-info">
+                    <h4>Islamabad</h4>
+                    <p>Pakistan</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Middle East</span>
+                        <span class="dest-price">P 47,069</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="africa">
+                <img src="images/harare.jpg" alt="Harare" class="w-100">
+                <div class="dest-info">
+                    <h4>Harare</h4>
+                    <p>Zimbabwe</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Africa</span>
+                        <span class="dest-price">P 12,000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="asia">
+                <img src="images/guangzhou.jpg" alt="Guangzhou" class="w-100">
+                <div class="dest-info">
+                    <h4>Guangzhou</h4>
+                    <p>China</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Asia</span>
+                        <span class="dest-price">P 56,004</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="africa">
+                <img src="images/daressalaam.jpg" alt="Dar es Salaam" class="w-100">
+                <div class="dest-info">
+                    <h4>Dar es Salaam</h4>
+                    <p>Tanzania</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Africa</span>
+                        <span class="dest-price">P 45,000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="americas">
+                <img src="images/dallas.jpg" alt="Dallas" class="w-100">
+                <div class="dest-info">
+                    <h4>Dallas</h4>
+                    <p>Texas, USA</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Americas</span>
+                        <span class="dest-price">P 115,703</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="europe">
+                <img src="images/copenhagen.jpg" alt="Copenhagen" class="w-100">
+                <div class="dest-info">
+                    <h4>Copenhagen</h4>
+                    <p>Denmark</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Europe</span>
+                        <span class="dest-price">P 60,000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="oceania">
+                <img src="images/brisbane.jpg" alt="Brisbane" class="w-100">
+                <div class="dest-info">
+                    <h4>Brisbane</h4>
+                    <p>Australia</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Oceania</span>
+                        <span class="dest-price">P 79,462</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="asia">
+                <img src="images/bali.jpg" alt="Bali" class="w-100">
+                <div class="dest-info">
+                    <h4>Bali</h4>
+                    <p>Indonesia</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Asia</span>
+                        <span class="dest-price">P 132,119</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="africa">
+                <img src="images/seychelles.jpg" alt="Seychelles" class="w-100">
+                <div class="dest-info">
+                    <h4>Seychelles</h4>
+                    <p>Seychelles</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Africa</span>
+                        <span class="dest-price">129,611</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="africa">
+                <img src="images/mauritus.jpg" alt="Mauritius" class="w-100">
+                <div class="dest-info">
+                    <h4>Mauritius</h4>
+                    <p>Africa</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Africa</span>
+                        <span class="dest-price">P 13,005</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4 dest-card hidden-card" data-region="oceania">
+                <img src="images/bora_bora.jpg" alt="Bora Bora" class="w-100">
+                <div class="dest-info">
+                    <h4>Bora Bora</h4>
+                    <p>French Polynesia</p>
+                    <div class="dest-bottom">
+                        <span class="dest-tag">Oceania</span>
+                        <span class="dest-price">P 35,949</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- SEE ALL BUTTON -->
+        <div class="see-all-wrapper">
+            <button class="see-all-btn" id="seeAllBtn" onclick="revealAll()">
+                See All Destinations &nbsp;↓
+            </button>
+        </div>
+    </section>
+
+    <!-- HELP & SUPPORT -->
+    <div class="help-support">
+        <h3>Help & Support</h3>
+        <div class="help-links">
+            <a href="contact.html">FAQ</a>
+            <a href="contact.html">Refund Policy</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </div>
+    <script>
+        function revealAll() {
+            const hidden = document.querySelectorAll('.hidden-card');
+            const btn = document.getElementById('seeAllBtn');
+            hidden.forEach((card, i) => {
+                card.style.animationDelay = (i * 0.07) + 's';
+                card.classList.remove('hidden-card');
+                card.classList.add('reveal-card');
+            });
+            btn.style.display = 'none';
+        }
+
+        function filterDestinations() {
+            const query = document.getElementById('destSearch').value.toLowerCase();
+            const cards = document.querySelectorAll('.dest-card');
+            cards.forEach(card => {
+                const name = card.querySelector('h4').textContent.toLowerCase();
+                const country = card.querySelector('p').textContent.toLowerCase();
+                const matches = name.includes(query) || country.includes(query);
+                card.style.display = matches ? '' : 'none';
+            });
+            if (query.length > 0) {
+                document.querySelectorAll('.hidden-card').forEach(c => {
+                    c.classList.remove('hidden-card');
+                });
+                document.getElementById('seeAllBtn').style.display = 'none';
+            }
+        }
+    </script>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>About</h3>
+                <a href="about.html">About Us</a>
+            </div>
+            <div class="footer-column">
+                <h3>Travel Info</h3>
+                <a href="experience.html">Before You Fly</a>
+                <a href="destinations.html">Destinations</a>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <a href="find-flights.html">Book</a>
+                <a href="manage.html">Manage</a>
+                <a href="find-flights.html#special-offers">Special Offers</a>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <a href="contact.html">Help</a>
+                <a href="experience.html">Experience</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © Skylink Airways | All Rights Reserved.
+            <a href="#" onclick="alert('Coming soon.')">Legal</a>
+            <a href="#" onclick="alert('Coming soon.')">Privacy Policy</a>
+            <a href="#" onclick="alert('Coming soon.')">Partners</a>
+            <a href="#" onclick="alert('Coming soon.')">Quick Links</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>

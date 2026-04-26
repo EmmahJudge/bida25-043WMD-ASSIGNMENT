@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skylink Airways | Find Flights</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+</head>
+
+<body>
+
+    <header class="navbar navbar-expand-lg" style="background:#2c241a; height:75px; padding:0 40px;">
+        <a href="index.html" class="navbar-brand logo">
+            <img src="images/logo.jpeg" class="logo-image" alt="Skylink Logo">
+            <span class="logo-text">Skylink Airways</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <span class="navbar-toggler-icon" style="filter:invert(1);"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <nav class="navbar-nav mx-auto gap-2">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="manage.html" class="nav-link">Manage</a>
+                <a href="find-flights.html" class="nav-link">Find Flights</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="destinations.html" class="nav-link">Destinations</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+                <a href="experience.html" class="nav-link">Experience</a>
+                <a href="feedback.html" class="nav-link">Feedback</a>
+            </nav>
+            <div class="d-flex align-items-center gap-3">
+                <form class="search-form" action="search.html" method="get">
+                    <input type="text" name="query" placeholder="Search..." class="form-control form-control-sm">
+                </form>
+                <a href="login.html" class="nav-link">Log in</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO WITH VIDEO -->
+    <section class="hero">
+        <video autoplay muted loop class="hero-video">
+            <source src="videos/video.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <div class="letdrop" id="letdropEl"></div>
+            <button class="cta" onclick="window.location.href='find-flights.html'"
+                style="opacity:0; animation: fadeIn 0.5s 1.8s forwards;">Book Now</button>
+        </div>
+    </section>
+
+    <!-- BOOKING SECTION -->
+    <div class="section">
+
+        <!-- Tab buttons -->
+        <div class="flex-row" id="tab-row">
+            <div class="box active-tab" onclick="setTab(this,'search')">Search Flights</div>
+            <div class="box" onclick="setTab(this,'manage')">Manage Booking</div>
+            <div class="box" onclick="setTab(this,'status')">Flight Status</div>
+        </div>
+
+        <!-- Search Flights panel -->
+        <div id="panel-search">
+            <div class="flex-row" style="align-items:center; margin-top:10px;">
+                <div class="airport-wrapper">
+                    <input class="airport-input" id="dep-input" placeholder="Departure Airport" autocomplete="off"
+                        oninput="filterDropdown('dep')" onfocus="openDropdown('dep')" onblur="closeDropdown('dep')">
+                    <div class="dropdown" id="dep-dropdown"></div>
+                </div>
+                <div class="swap-btn" title="Swap airports" onclick="swapAirports()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c4935a" stroke-width="1.8"
+                        stroke-linecap="round">
+                        <path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4" />
+                    </svg>
+                </div>
+                <div class="airport-wrapper">
+                    <input class="airport-input" id="arr-input" placeholder="Arrival Airport" autocomplete="off"
+                        oninput="filterDropdown('arr')" onfocus="openDropdown('arr')" onblur="closeDropdown('arr')">
+                    <div class="dropdown" id="arr-dropdown"></div>
+                </div>
+                <div class="box continue" onclick="goToFlights()">Continue</div>
+            </div>
+        </div>
+
+        <!-- Manage Booking panel -->
+        <div id="panel-manage" style="display:none; padding: 1rem 0;">
+            <div class="flex-row" style="margin-top:10px; gap:10px;">
+                <input class="airport-input" id="manage-ref"
+                    style="border-right:0.5px solid rgba(44,36,26,0.15); min-width:200px;"
+                    placeholder="Booking Reference" />
+                <input class="airport-input" id="manage-name"
+                    style="border-right:0.5px solid rgba(44,36,26,0.15); min-width:200px;" placeholder="Last Name" />
+                <div class="box continue" style="border-right:0.5px solid rgba(44,36,26,0.15);" onclick="findBooking()">
+                    Find Booking</div>
+            </div>
+        </div>
+
+        <!-- Flight Status panel -->
+        <div id="panel-status" style="display:none; padding: 1rem 0;">
+            <div class="flex-row" style="margin-top:10px; gap:10px;">
+                <input class="airport-input" id="status-flight"
+                    style="border-right:0.5px solid rgba(44,36,26,0.15); min-width:220px;"
+                    placeholder="Flight Number e.g. SK 204" />
+                <input class="airport-input" id="status-date" type="date"
+                    style="border-right:0.5px solid rgba(44,36,26,0.15); min-width:180px; color:#2c241a;" />
+                <div class="box continue" style="border-right:0.5px solid rgba(44,36,26,0.15);" onclick="checkStatus()">
+                    Check Status</div>
+            </div>
+        </div>
+
+    </div>
+    <!-- END BOOKING SECTION -->
+
+    <!-- FEATURED DESTINATIONS -->
+    <div class="section">
+        <h3 class="center">Featured Destinations</h3>
+
+        <div class="grid">
+            <div class="dest-card-home dubai" onclick="goToFlight('DXB', 'Dubai')">
+                <div class="hover-content">
+                    <div class="overlay-btn">Flights to Dubai</div>
+                </div>
+                <span>Dubai</span>
+            </div>
+
+            <div class="dest-card-home durban" onclick="goToFlight('DUR', 'Durban')">
+                <div class="hover-content">
+                    <div class="overlay-btn">Flights to Durban</div>
+                </div>
+                <span>Durban</span>
+            </div>
+
+            <div class="dest-card-home los-angeles" onclick="goToFlight('LAX', 'Los Angeles')">
+                <div class="hover-content">
+                    <div class="overlay-btn">Flights to Los Angeles</div>
+                </div>
+                <span>Los Angeles</span>
+            </div>
+
+            <div class="dest-card-home chicago" onclick="goToFlight('ORD', 'Chicago')">
+                <div class="hover-content">
+                    <div class="overlay-btn">Flights to Chicago</div>
+                </div>
+                <span>Chicago</span>
+            </div>
+
+            <div class="dest-card-home dublin" onclick="goToFlight('DUB', 'Dublin')">
+                <div class="hover-content">
+                    <div class="overlay-btn">Flights to Dublin</div>
+                </div>
+                <span>Dublin</span>
+            </div>
+
+            <div class="dest-card-home johannesburg" onclick="goToFlight('JNB', 'Johannesburg')">
+                <div class="hover-content">
+                    <div class="overlay-btn">Flights to Johannesburg</div>
+                </div>
+                <span>Johannesburg</span>
+            </div>
+        </div>
+
+    </div>
+    <!-- END FEATURED DESTINATIONS -->
+
+    <!-- EXPERIENCE -->
+    <div class="section">
+        <h3 class="center">Experience</h3>
+        <div class="home-exp-grid">
+
+            <div class="home-exp-card">
+                <p class="home-card-subtitle">CABIN FEATURES</p>
+                <h2>First Class</h2>
+                <a href="experience.html#panel-cabin" class="home-learn-btn">Learn More</a>
+                <img src="images/firstclass.jpg" alt="First Class">
+            </div>
+
+            <div class="home-exp-card">
+                <p class="home-card-subtitle">CABIN FEATURES</p>
+                <h2>Business Class</h2>
+                <a href="experience.html#panel-cabin" class="home-learn-btn">Learn More</a>
+                <img src="images/businessclass.jpg" alt="Business Class">
+            </div>
+
+            <div class="home-exp-card">
+                <p class="home-card-subtitle">CABIN FEATURES</p>
+                <h2>Premium Economy</h2>
+                <a href="experience.html#panel-cabin" class="home-learn-btn">Learn More</a>
+                <img src="images/premiumeconomy.jpg" alt="Premium Economy">
+            </div>
+
+            <div class="home-exp-card">
+                <p class="home-card-subtitle">CABIN FEATURES</p>
+                <h2>Economy Class</h2>
+                <a href="experience.html#panel-cabin" class="home-learn-btn">Learn More</a>
+                <img src="images/economyclass.jpg" alt="Economy Class">
+            </div>
+
+        </div>
+    </div>
+    <!-- END EXPERIENCE -->
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>About</h3>
+                <a href="about.html">About Us</a>
+
+            </div>
+            <div class="footer-column">
+                <h3>Travel Info</h3>
+                <a href="experience.html">Before You Fly</a>
+                <a href="destinations.html">Destinations</a>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <a href="find-flights.html">Book</a>
+                <a href="manage.html">Manage</a>
+                <a href="find-flights.html#special-offers">Special Offers</a>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <a href="contact.html">Help</a>
+                <a href="experience.html">Experience</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © Skylink Airways | All Rights Reserved.
+            <a href="#" onclick="alert('Coming soon.')">Legal</a>
+            <a href="#" onclick="alert('Coming soon.')">Privacy Policy</a>
+            <a href="#" onclick="alert('Coming soon.')">Partners</a>
+            <a href="#" onclick="alert('Coming soon.')">Quick Links</a>
+        </div>
+    </footer>
+
+    <script>
+        const airports = [
+            { code: 'JNB', name: 'OR Tambo', city: 'Johannesburg' },
+            { code: 'CPT', name: 'Cape Town Intl', city: 'Cape Town' },
+            { code: 'DUR', name: 'King Shaka Intl', city: 'Durban' },
+            { code: 'DXB', name: 'Dubai Intl', city: 'Dubai' },
+            { code: 'LHR', name: 'Heathrow', city: 'London' },
+            { code: 'LAX', name: 'Los Angeles Intl', city: 'Los Angeles' },
+            { code: 'ORD', name: "O'Hare Intl", city: 'Chicago' },
+            { code: 'DUB', name: 'Dublin Intl', city: 'Dublin' },
+            { code: 'CDG', name: 'Charles de Gaulle', city: 'Paris' },
+            { code: 'JFK', name: 'John F. Kennedy', city: 'New York' },
+            { code: 'SIN', name: 'Changi Airport', city: 'Singapore' },
+            { code: 'SYD', name: 'Kingsford Smith', city: 'Sydney' },
+        ];
+
+        function renderDropdown(id, list) {
+            const dd = document.getElementById(id + '-dropdown');
+            dd.innerHTML = list.map(a => `
+                <div class="dropdown-item" onmousedown="selectAirport('${id}','${a.code}','${a.city}')">
+                    <span class="code">${a.code}</span>
+                    <span class="city">${a.city} — ${a.name}</span>
+                </div>`).join('');
+        }
+
+        function filterDropdown(id) {
+            const val = document.getElementById(id + '-input').value.toLowerCase();
+            const filtered = airports.filter(a =>
+                a.code.toLowerCase().includes(val) ||
+                a.city.toLowerCase().includes(val) ||
+                a.name.toLowerCase().includes(val)
+            );
+            renderDropdown(id, filtered);
+            openDropdown(id);
+        }
+
+        function openDropdown(id) {
+            const val = document.getElementById(id + '-input').value.toLowerCase();
+            const list = val
+                ? airports.filter(a => a.code.toLowerCase().includes(val) || a.city.toLowerCase().includes(val))
+                : airports;
+            renderDropdown(id, list);
+            document.getElementById(id + '-dropdown').classList.add('open');
+        }
+
+        function closeDropdown(id) {
+            setTimeout(() => {
+                document.getElementById(id + '-dropdown').classList.remove('open');
+            }, 150);
+        }
+
+        function selectAirport(id, code, city) {
+            document.getElementById(id + '-input').value = code + ' — ' + city;
+            document.getElementById(id + '-dropdown').classList.remove('open');
+        }
+
+        function swapAirports() {
+            const dep = document.getElementById('dep-input');
+            const arr = document.getElementById('arr-input');
+            const tmp = dep.value;
+            dep.value = arr.value;
+            arr.value = tmp;
+        }
+
+        function setTab(el, panel) {
+            document.querySelectorAll('#tab-row .box').forEach(b => b.classList.remove('active-tab'));
+            el.classList.add('active-tab');
+            ['search', 'manage', 'status'].forEach(p => {
+                document.getElementById('panel-' + p).style.display = p === panel ? 'block' : 'none';
+            });
+        }
+
+        function goToFlights() {
+            const dep = document.getElementById('dep-input').value;
+            const arr = document.getElementById('arr-input').value;
+            if (!dep || !arr) { alert('Please select both airports.'); return; }
+            window.location.href = 'find-flights.html?dep=' + encodeURIComponent(dep) + '&arr=' + encodeURIComponent(arr);
+        }
+
+        function goToFlight(code, city) {
+            window.location.href = 'find-flights.html?dest=' + code + '&city=' + encodeURIComponent(city);
+        }
+        function findBooking() {
+            const ref = document.getElementById('manage-ref').value.trim();
+            const lastName = document.getElementById('manage-name').value.trim();
+
+            if (!ref || !lastName) {
+                alert('Please enter both your Booking Reference and Last Name.');
+                return;
+            }
+            window.location.href = 'manage.html';
+        }
+
+        function checkStatus() {
+            const flightNo = document.getElementById('status-flight').value.trim();
+            const date = document.getElementById('status-date').value;
+
+            if (!flightNo) {
+                alert('Please enter a flight number.');
+                return;
+            }
+            window.location.href = 'find-flights.html';
+        }
+
+        const words = ["Comfort", " Above", " The", " Clouds"];
+        const colors = [null, null, null, "#c4935a"];
+        const el = document.getElementById('letdropEl');
+        let delay = 0;
+
+        words.forEach((word, wi) => {
+            [...word].forEach((ch) => {
+                const span = document.createElement('span');
+                span.textContent = ch === ' ' ? '\u00a0' : ch;
+                if (colors[wi]) span.style.color = colors[wi];
+                span.style.animationDelay = delay + 's';
+                delay += ch === ' ' ? 0.01 : 0.055;
+                el.appendChild(span);
+            });
+            if (wi === 1) {
+                el.appendChild(document.createElement('br'));
+            }
+        });
+        // Find Booking
+        function findBooking() {
+            const ref = document.querySelector('#panel-manage input:nth-child(1)').value.trim();
+            const lastName = document.querySelector('#panel-manage input:nth-child(2)').value.trim();
+
+            if (!ref || !lastName) {
+                alert('Please enter both your Booking Reference and Last Name.');
+                return;
+            }
+
+            window.location.href = 'manage.html?ref=' + encodeURIComponent(ref) + '&name=' + encodeURIComponent(lastName);
+        }
+
+        // Check Status
+        function checkStatus() {
+            const flightNo = document.querySelector('#panel-status input:nth-child(1)').value.trim();
+            const date = document.querySelector('#panel-status input[type="date"]').value;
+
+            if (!flightNo) {
+                alert('Please enter a flight number.');
+                return;
+            }
+
+            window.location.href = 'find-flights.html?flight=' + encodeURIComponent(flightNo) + '&date=' + encodeURIComponent(date);
+        }
+    </script>
+
+</body>
+
+</html>
