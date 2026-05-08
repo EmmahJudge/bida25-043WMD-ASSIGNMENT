@@ -376,7 +376,7 @@ body {
 
 /* Background images */
 .dubai {
-    background-image: url('images/dubai.jpg');
+    background-image: url('./images/dubai.jpg');
 }
 
 .durban {
